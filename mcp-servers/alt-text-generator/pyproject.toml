@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "alt-text-cv-server"
+version = "1.0.0"
+description = "MCP Server for AI-powered descriptive alt text generation"
+authors = [
+    {name = "Accessibility Team", email = "accessibility@example.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Internet :: WWW/HTTP :: Browsers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+
+dependencies = [
+    "mcp>=0.1.0",
+    "httpx>=0.24.0",
+    "pillow>=9.0.0",
+    "openai>=1.0.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=22.0.0",
+    "mypy>=1.0.0"
+]
+
+[project.scripts]
+alt-text-cv-server = "alt_text_generator.server:main"
+
+[project.urls]
+Homepage = "https://github.com/your-org/alt-text-cv-server"
+Repository = "https://github.com/your-org/alt-text-cv-server"
+Issues = "https://github.com/your-org/alt-text-cv-server/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["alt_text_generator*"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true

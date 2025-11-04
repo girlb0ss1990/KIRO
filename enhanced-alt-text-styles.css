@@ -1,0 +1,369 @@
+/* Enhanced Alt Text Inspector Styles */
+
+/* Base indicator styles */
+.accessibility-alt-indicator {
+  position: absolute;
+  background: #007bff;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  pointer-events: auto;
+  transition: all 0.2s ease;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accessibility-alt-indicator:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Indicator variants */
+.accessibility-alt-indicator.accessibility-alt-missing {
+  background: #dc3545;
+  animation: pulse 2s infinite;
+}
+
+.accessibility-alt-indicator.accessibility-alt-present {
+  background: #28a745;
+}
+
+.accessibility-alt-indicator.accessibility-alt-applied {
+  background: #17a2b8;
+}
+
+.accessibility-alt-indicator.clickable {
+  cursor: pointer;
+}
+
+/* Pulse animation for missing alt text */
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Modal base styles */
+.accessibility-alt-modal,
+.accessibility-validation-modal,
+.accessibility-fallback-modal {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.accessibility-modal-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.accessibility-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px 16px;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.accessibility-modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.accessibility-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.accessibility-modal-close:hover {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.accessibility-modal-body {
+  padding: 20px 24px;
+}
+
+.accessibility-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding: 16px 24px 20px;
+  border-top: 1px solid #e9ecef;
+}
+
+/* Alt text options */
+.accessibility-alt-options {
+  margin-top: 16px;
+}
+
+.accessibility-alt-option {
+  margin-bottom: 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 6px;
+  padding: 12px;
+  transition: border-color 0.2s;
+}
+
+.accessibility-alt-option:hover {
+  border-color: #007bff;
+}
+
+.accessibility-alt-option input[type="radio"] {
+  margin-right: 8px;
+}
+
+.accessibility-alt-option label {
+  cursor: pointer;
+  display: block;
+  margin: 0;
+}
+
+.accessibility-alt-text {
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.accessibility-alt-meta {
+  font-size: 12px;
+  color: #6c757d;
+  text-transform: capitalize;
+}
+
+.accessibility-custom-alt {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-top: 8px;
+  font-family: inherit;
+}
+
+.accessibility-custom-alt:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* Validation modal specific styles */
+.accessibility-current-alt {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.accessibility-quality-score {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-align: center;
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 4px;
+}
+
+.accessibility-issues,
+.accessibility-suggestions {
+  margin-bottom: 16px;
+}
+
+.accessibility-issues h4,
+.accessibility-suggestions h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.accessibility-issues ul,
+.accessibility-suggestions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.accessibility-issues li,
+.accessibility-suggestions li {
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+
+.accessibility-issues {
+  color: #dc3545;
+}
+
+.accessibility-suggestions {
+  color: #007bff;
+}
+
+/* Fallback modal styles */
+.accessibility-manual-alt {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 14px;
+  font-family: inherit;
+  resize: vertical;
+  min-height: 80px;
+}
+
+.accessibility-manual-alt:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.accessibility-alt-tips {
+  margin-top: 16px;
+  padding: 12px;
+  background: #e7f3ff;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.accessibility-alt-tips strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #0056b3;
+}
+
+.accessibility-alt-tips ul {
+  margin: 0;
+  padding-left: 16px;
+}
+
+.accessibility-alt-tips li {
+  margin-bottom: 4px;
+}
+
+/* Button styles */
+.accessibility-btn-primary,
+.accessibility-btn-secondary {
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.accessibility-btn-primary {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.accessibility-btn-primary:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+.accessibility-btn-secondary {
+  background: white;
+  color: #6c757d;
+  border-color: #6c757d;
+}
+
+.accessibility-btn-secondary:hover {
+  background: #f8f9fa;
+  color: #495057;
+  border-color: #495057;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .accessibility-modal-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .accessibility-modal-header,
+  .accessibility-modal-body,
+  .accessibility-modal-footer {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  
+  .accessibility-alt-indicator {
+    font-size: 11px;
+    padding: 3px 6px;
+    max-width: 150px;
+  }
+}
+
+/* Loading states */
+.accessibility-alt-indicator.loading {
+  background: #6c757d;
+  animation: loading-pulse 1s infinite;
+}
+
+@keyframes loading-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* Success feedback */
+.accessibility-alt-indicator.success-feedback {
+  animation: success-flash 2s ease-out;
+}
+
+@keyframes success-flash {
+  0% { background: #28a745; transform: scale(1.1); }
+  100% { background: #17a2b8; transform: scale(1); }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .accessibility-alt-indicator {
+    border: 2px solid currentColor;
+  }
+  
+  .accessibility-modal-content {
+    border: 2px solid #333;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .accessibility-alt-indicator,
+  .accessibility-btn-primary,
+  .accessibility-btn-secondary {
+    transition: none;
+  }
+  
+  .accessibility-alt-indicator.accessibility-alt-missing {
+    animation: none;
+  }
+  
+  .accessibility-alt-indicator:hover {
+    transform: none;
+  }
+}

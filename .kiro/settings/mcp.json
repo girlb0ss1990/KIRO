@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "alt-text-generator": {
+      "command": "python",
+      "args": ["mcp-servers/alt-text-generator/simple_server.py"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "INFO",
+        "CV_MODEL_PROVIDER": "openai",
+        "MAX_IMAGE_SIZE": "2048"
+      },
+      "disabled": false,
+      "autoApprove": [
+        "generate_alt_text",
+        "analyze_image_context",
+        "validate_alt_text_quality"
+      ]
+    }
+  }
+}
