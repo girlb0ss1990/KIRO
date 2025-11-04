@@ -73,7 +73,7 @@ class AccessibilityPopup {
   async loadSavedStates() {
     const features = [
       'contrast-checker', 'high-contrast', 'focus-order', 'alt-inspector',
-      'reading-mode', 'tts', 'beeline', 'caret-browsing', 'target-size'
+      'reading-mode', 'beeline', 'caret-browsing', 'target-size'
     ];
 
     for (const feature of features) {

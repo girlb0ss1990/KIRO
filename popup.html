@@ -103,6 +103,56 @@
       border: 1px solid #dadce0;
       border-radius: 4px;
     }
+    
+    .help-icon {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+      background: #5f6368;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 10px;
+      line-height: 14px;
+      margin-left: 6px;
+      cursor: help;
+      position: relative;
+    }
+    
+    .tooltip {
+      visibility: hidden;
+      width: 250px;
+      background-color: #333;
+      color: #fff;
+      text-align: left;
+      border-radius: 6px;
+      padding: 8px;
+      position: absolute;
+      z-index: 1000;
+      bottom: 125%;
+      left: 50%;
+      margin-left: -125px;
+      opacity: 0;
+      transition: opacity 0.3s;
+      font-size: 12px;
+      line-height: 1.4;
+    }
+    
+    .tooltip::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: #333 transparent transparent transparent;
+    }
+    
+    .help-icon:hover .tooltip {
+      visibility: visible;
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -110,28 +160,48 @@
     <div class="section-title">🎨 Visual Accessibility</div>
     
     <div class="feature-item">
-      <span class="feature-label">Color Contrast Checker</span>
+      <span class="feature-label">
+        Color Contrast Checker
+        <span class="help-icon">?
+          <span class="tooltip">Hover over text elements to check if they meet WCAG contrast ratio standards (4.5:1 for AA compliance)</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="contrast-checker">
         <div class="toggle-slider"></div>
       </div>
     </div>
     
     <div class="feature-item">
-      <span class="feature-label">High Contrast Mode</span>
+      <span class="feature-label">
+        High Contrast Mode
+        <span class="help-icon">?
+          <span class="tooltip">Inverts page colors to create high contrast for users with low vision or light sensitivity</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="high-contrast">
         <div class="toggle-slider"></div>
       </div>
     </div>
     
     <div class="feature-item">
-      <span class="feature-label">Focus Order Checker</span>
+      <span class="feature-label">
+        Focus Order Checker
+        <span class="help-icon">?
+          <span class="tooltip">Shows numbered indicators on focusable elements to verify keyboard navigation order matches visual layout</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="focus-order">
         <div class="toggle-slider"></div>
       </div>
     </div>
     
     <div class="feature-item">
-      <span class="feature-label">Alt Text Inspector</span>
+      <span class="feature-label">
+        Alt Text Inspector
+        <span class="help-icon">?
+          <span class="tooltip">Displays tooltips over images showing their alt text content, highlights images missing alt text in red</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="alt-inspector">
         <div class="toggle-slider"></div>
       </div>
@@ -148,21 +218,24 @@
     <div class="section-title">🧠 Cognitive Accessibility</div>
     
     <div class="feature-item">
-      <span class="feature-label">Reading Mode</span>
+      <span class="feature-label">
+        Reading Mode
+        <span class="help-icon">?
+          <span class="tooltip">Removes ads, sidebars, and distracting elements, presenting clean content with readable fonts for better focus</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="reading-mode">
         <div class="toggle-slider"></div>
       </div>
     </div>
     
     <div class="feature-item">
-      <span class="feature-label">Text-to-Speech</span>
-      <div class="toggle-switch" data-feature="tts">
-        <div class="toggle-slider"></div>
-      </div>
-    </div>
-    
-    <div class="feature-item">
-      <span class="feature-label">BeeLine Reader</span>
+      <span class="feature-label">
+        BeeLine Reader
+        <span class="help-icon">?
+          <span class="tooltip">Applies color gradients to text lines to guide your eye from the end of one line to the start of the next</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="beeline">
         <div class="toggle-slider"></div>
       </div>
@@ -183,14 +256,24 @@
     <div class="section-title">⌨️ Motor Accessibility</div>
     
     <div class="feature-item">
-      <span class="feature-label">Caret Browsing</span>
+      <span class="feature-label">
+        Caret Browsing
+        <span class="help-icon">?
+          <span class="tooltip">Navigate the page using arrow keys like a text document cursor, providing precise navigation for keyboard users</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="caret-browsing">
         <div class="toggle-slider"></div>
       </div>
     </div>
     
     <div class="feature-item">
-      <span class="feature-label">Target Size Checker</span>
+      <span class="feature-label">
+        Target Size Checker
+        <span class="help-icon">?
+          <span class="tooltip">Highlights interactive elements smaller than 44x44px (WCAG minimum) to identify hard-to-click targets</span>
+        </span>
+      </span>
       <div class="toggle-switch" data-feature="target-size">
         <div class="toggle-slider"></div>
       </div>

@@ -13,7 +13,6 @@ A comprehensive Chrome extension that combines multiple accessibility tools to h
 
 ### 🧠 Cognitive Accessibility
 - **Reading Mode**: Removes distractions and presents clean, readable content
-- **Text-to-Speech**: Reads selected text aloud with highlighting
 - **BeeLine Reader**: Applies color gradients to guide eye movement across lines
 - **Dyslexia-Friendly Fonts**: OpenDyslexic, Comic Sans MS, and Verdana options
 
@@ -49,7 +48,7 @@ A comprehensive Chrome extension that combines multiple accessibility tools to h
 - `activeTab` - Access current tab content
 - `storage` - Save user preferences
 - `scripting` - Inject accessibility features
-- `tts` - Text-to-speech functionality
+
 
 ## Development
 

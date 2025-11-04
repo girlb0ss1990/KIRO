@@ -154,8 +154,3 @@
   51%, 100% { opacity: 0; }
 }
 
-/* TTS Highlight */
-.accessibility-tts-highlight {
-  background: rgba(255, 255, 0, 0.5) !important;
-  transition: background 0.3s ease !important;
-}

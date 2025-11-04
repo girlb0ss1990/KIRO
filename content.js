@@ -13,7 +13,6 @@ class AccessibilityToolkit {
     this.features.set('focus-order', new FocusOrderChecker());
     this.features.set('alt-inspector', new AltTextInspector());
     this.features.set('reading-mode', new ReadingMode());
-    this.features.set('tts', new TextToSpeech());
     this.features.set('beeline', new BeelineReader());
     this.features.set('caret-browsing', new CaretBrowsing());
     this.features.set('target-size', new TargetSizeChecker());
@@ -293,69 +292,7 @@ class ReadingMode {
   }
 }
 
-class TextToSpeech {
-  constructor() {
-    this.isEnabled = false;
-    this.currentUtterance = null;
-  }
 
-  enable() {
-    this.isEnabled = true;
-    document.addEventListener('mouseup', this.handleTextSelection.bind(this));
-  }
-
-  disable() {
-    this.isEnabled = false;
-    document.removeEventListener('mouseup', this.handleTextSelection.bind(this));
-    this.stopSpeaking();
-  }
-
-  handleTextSelection() {
-    if (!this.isEnabled) return;
-    
-    const selection = window.getSelection();
-    const text = selection.toString().trim();
-    
-    if (text) {
-      this.speak(text);
-      this.highlightText(selection);
-    }
-  }
-
-  speak(text) {
-    this.stopSpeaking();
-    
-    this.currentUtterance = new SpeechSynthesisUtterance(text);
-    this.currentUtterance.rate = 0.8;
-    this.currentUtterance.pitch = 1;
-    
-    speechSynthesis.speak(this.currentUtterance);
-  }
-
-  stopSpeaking() {
-    if (this.currentUtterance) {
-      speechSynthesis.cancel();
-      this.currentUtterance = null;
-    }
-  }
-
-  highlightText(selection) {
-    const range = selection.getRangeAt(0);
-    const span = document.createElement('span');
-    span.className = 'accessibility-tts-highlight';
-    
-    try {
-      range.surroundContents(span);
-      setTimeout(() => {
-        if (span.parentNode) {
-          span.outerHTML = span.innerHTML;
-        }
-      }, 3000);
-    } catch (e) {
-      // Handle cases where range spans multiple elements
-    }
-  }
-}
 
 class BeelineReader {
   enable() {
