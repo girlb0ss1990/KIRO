@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "WCAG Documentation Hook",
+  "description": "Automatically generates Markdown documentation detailing WCAG compliance features, specific standards addressed, and updates the project README when code generation is completed",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "content.js",
+      "background.js",
+      "popup.js",
+      "content.css"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Generate a comprehensive Markdown summary for the Triple-Threat Audit Overlay feature that includes: 1) A clear description of the feature and its functionality, 2) Specific WCAG standards it addresses (including Success Criteria like 1.4.3 for Contrast), 3) How it improves accessibility compliance, and 4) Update the README.md file with this information in a dedicated WCAG Compliance section"
+  }
+}

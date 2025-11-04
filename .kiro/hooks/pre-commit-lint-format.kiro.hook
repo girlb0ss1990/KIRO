@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "name": "Pre-Commit Lint and Format",
+  "description": "Automatically runs ESLint and Prettier on JavaScript content scripts and CSS files when they are staged for commit to ensure consistent code style and zero syntax errors across the Contrast, Focus, and Alt Text auditing tools.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "content.js",
+      "background.js",
+      "popup.js",
+      "content.css"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A JavaScript or CSS file has been modified and staged for commit. Please run ESLint to check for syntax errors and code quality issues, then run Prettier to format the code consistently. Ensure the code follows best practices for browser extension development and maintains consistency across the Contrast, Focus, and Alt Text auditing tools. Report any linting errors that need to be fixed before the commit can proceed."
+  }
+}

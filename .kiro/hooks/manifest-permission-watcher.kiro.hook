@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Manifest and Permission Watcher",
+  "description": "Watches for new file creation in the new_features directory and automatically reviews files for Chrome API usage, then injects necessary permissions into manifest.json",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "new_features/**/*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A new file has been created in the new_features directory. Please analyze the file for Chrome API usage (such as chrome.storage, chrome.tabs, chrome.runtime, etc.) and automatically update the manifest.json file to include any required permissions. For example, if chrome.storage is used, add \"storage\" to the permissions array in manifest.json. Review the file content thoroughly and ensure all necessary permissions are properly injected."
+  }
+}
