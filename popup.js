@@ -59,10 +59,86 @@ class AccessibilityPopup {
     this.sendMessage({ action: 'disableFeature', feature });
   }
 
-  sendMessage(message) {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, message);
-    });
+  async sendMessage(message) {
+    try {
+      const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+      if (tabs.length === 0) {
+        console.warn('No active tab found');
+        return;
+      }
+
+      const tab = tabs[0];
+      
+      // Check if the tab URL is valid for content scripts
+      if (tab.url.startsWith('chrome://') || tab.url.startsWith('chrome-extension://') || tab.url.startsWith('edge://') || tab.url.startsWith('about:')) {
+        console.warn('Cannot inject content script into browser pages');
+        this.showError('This extension cannot run on browser internal pages');
+        return;
+      }
+
+      // Try to send the message
+      await chrome.tabs.sendMessage(tab.id, message);
+    } catch (error) {
+      console.warn('Content script not ready, injecting...', error);
+      
+      // If content script isn't ready, inject it first
+      try {
+        const tabs = await chrome.tabs.query({ active: true, currentWindow: true });
+        const tab = tabs[0];
+        
+        // Inject the content script
+        await chrome.scripting.executeScript({
+          target: { tabId: tab.id },
+          files: ['content.js']
+        });
+
+        // Inject the CSS
+        await chrome.scripting.insertCSS({
+          target: { tabId: tab.id },
+          files: ['content.css']
+        });
+
+        // Wait a moment for the script to initialize, then try again
+        setTimeout(async () => {
+          try {
+            await chrome.tabs.sendMessage(tab.id, message);
+          } catch (retryError) {
+            console.error('Failed to send message after injection:', retryError);
+            this.showError('Failed to activate feature. Please refresh the page and try again.');
+          }
+        }, 100);
+
+      } catch (injectionError) {
+        console.error('Failed to inject content script:', injectionError);
+        this.showError('Cannot activate features on this page. Please try on a regular webpage.');
+      }
+    }
+  }
+
+  showError(message) {
+    // Create a temporary error message in the popup
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+      position: fixed;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      background: #dc3545;
+      color: white;
+      padding: 8px;
+      border-radius: 4px;
+      font-size: 12px;
+      z-index: 1000;
+    `;
+    errorDiv.textContent = message;
+    document.body.appendChild(errorDiv);
+
+    // Remove after 3 seconds
+    setTimeout(() => {
+      if (errorDiv.parentNode) {
+        errorDiv.parentNode.removeChild(errorDiv);
+      }
+    }, 3000);
   }
 
   saveState(feature, state) {

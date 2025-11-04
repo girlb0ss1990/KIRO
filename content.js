@@ -19,7 +19,7 @@ class AccessibilityToolkit {
   }
 
   setupMessageListener() {
-    chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+    chrome.runtime.onMessage.addListener((message) => {
       switch (message.action) {
         case 'enableFeature':
           this.enableFeature(message.feature);
@@ -347,24 +347,24 @@ class CaretBrowsing {
     switch (event.key) {
       case 'ArrowUp':
         event.preventDefault();
-        this.moveCaret('up');
+        this.moveCaret();
         break;
       case 'ArrowDown':
         event.preventDefault();
-        this.moveCaret('down');
+        this.moveCaret();
         break;
       case 'ArrowLeft':
         event.preventDefault();
-        this.moveCaret('left');
+        this.moveCaret();
         break;
       case 'ArrowRight':
         event.preventDefault();
-        this.moveCaret('right');
+        this.moveCaret();
         break;
     }
   }
 
-  moveCaret(direction) {
+  moveCaret() {
     // Simplified caret movement - in a full implementation,
     // this would need to handle text nodes and positioning more precisely
     const rect = document.elementFromPoint(window.innerWidth / 2, window.innerHeight / 2)?.getBoundingClientRect();
@@ -430,11 +430,16 @@ class TargetSizeChecker {
   }
 }
 
-// Initialize the toolkit when the page loads
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => {
-    new AccessibilityToolkit();
-  });
-} else {
-  new AccessibilityToolkit();
+// Prevent multiple initializations
+if (!window.accessibilityToolkitInitialized) {
+  window.accessibilityToolkitInitialized = true;
+  
+  // Initialize the toolkit when the page loads
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      window.accessibilityToolkit = new AccessibilityToolkit();
+    });
+  } else {
+    window.accessibilityToolkit = new AccessibilityToolkit();
+  }
 }
