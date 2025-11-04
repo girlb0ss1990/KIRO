@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Universal Accessibility Toolkit",
+  "version": "1.0.0",
+  "description": "Comprehensive accessibility tools for visual, cognitive, and motor accessibility needs",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "scripting",
+    "tts"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Accessibility Toolkit"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*", "icons/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

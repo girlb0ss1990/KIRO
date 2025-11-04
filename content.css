@@ -1,0 +1,161 @@
+/* Accessibility Extension Styles */
+
+/* High Contrast Mode */
+.accessibility-high-contrast {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+.accessibility-high-contrast img,
+.accessibility-high-contrast video,
+.accessibility-high-contrast iframe,
+.accessibility-high-contrast svg {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Color Blindness Filters */
+.accessibility-protanopia {
+  filter: url('#protanopia-filter') !important;
+}
+
+.accessibility-deuteranopia {
+  filter: url('#deuteranopia-filter') !important;
+}
+
+.accessibility-tritanopia {
+  filter: url('#tritanopia-filter') !important;
+}
+
+/* Reading Mode */
+.accessibility-reading-mode * {
+  background: #f9f9f9 !important;
+  color: #333 !important;
+  font-family: Georgia, serif !important;
+  line-height: 1.6 !important;
+}
+
+.accessibility-reading-mode nav,
+.accessibility-reading-mode aside,
+.accessibility-reading-mode .sidebar,
+.accessibility-reading-mode .advertisement,
+.accessibility-reading-mode .ad,
+.accessibility-reading-mode header,
+.accessibility-reading-mode footer {
+  display: none !important;
+}
+
+/* Dyslexia Fonts */
+.accessibility-font-opendyslexic * {
+  font-family: 'OpenDyslexic', monospace !important;
+}
+
+.accessibility-font-comic-sans * {
+  font-family: 'Comic Sans MS', cursive !important;
+}
+
+.accessibility-font-verdana * {
+  font-family: 'Verdana', sans-serif !important;
+}
+
+/* Focus Order Indicators */
+.accessibility-focus-indicator {
+  position: absolute;
+  background: rgba(26, 115, 232, 0.8);
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* Alt Text Inspector */
+.accessibility-alt-indicator {
+  position: absolute;
+  background: rgba(255, 193, 7, 0.9);
+  color: #000;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: bold;
+  z-index: 10000;
+  pointer-events: none;
+  max-width: 200px;
+  word-wrap: break-word;
+}
+
+.accessibility-alt-missing {
+  background: rgba(220, 53, 69, 0.9) !important;
+  color: white !important;
+}
+
+/* Target Size Indicators */
+.accessibility-small-target {
+  outline: 3px solid #dc3545 !important;
+  outline-offset: 2px !important;
+}
+
+.accessibility-target-tooltip {
+  position: absolute;
+  background: rgba(220, 53, 69, 0.9);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+/* Contrast Checker */
+.accessibility-contrast-indicator {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.accessibility-contrast-pass {
+  background: rgba(40, 167, 69, 0.9) !important;
+}
+
+.accessibility-contrast-fail {
+  background: rgba(220, 53, 69, 0.9) !important;
+}
+
+/* BeeLine Reader Gradient */
+.accessibility-beeline-text {
+  background: linear-gradient(90deg, 
+    rgba(255, 0, 0, 0.3) 0%, 
+    rgba(255, 165, 0, 0.3) 25%, 
+    rgba(255, 255, 0, 0.3) 50%, 
+    rgba(0, 255, 0, 0.3) 75%, 
+    rgba(0, 0, 255, 0.3) 100%);
+  background-size: 100% 1.2em;
+  background-repeat: repeat-y;
+}
+
+/* Caret Browsing */
+.accessibility-caret {
+  position: absolute;
+  width: 2px;
+  height: 1.2em;
+  background: #000;
+  animation: blink 1s infinite;
+  z-index: 10000;
+  pointer-events: none;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* TTS Highlight */
+.accessibility-tts-highlight {
+  background: rgba(255, 255, 0, 0.5) !important;
+  transition: background 0.3s ease !important;
+}
